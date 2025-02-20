@@ -35,7 +35,7 @@ foreach ($_SESSION['panier'] as $id => $quantite) {
     <div class="container mt-5">
         <h2>Validation de votre commande</h2>
         <p>Total &agrave; payer : <strong><?= number_format($total, 2) ?> &euro;</strong></p>
-        <form method="post" action="traitementCommande.php">
+        <form method="post" action="paiement.php">
             <div class="mb-3">
                 <label for="nom">Nom complet :</label>
                 <input type="text" name="nom" id="nom" class="form-control" required>
@@ -48,7 +48,8 @@ foreach ($_SESSION['panier'] as $id => $quantite) {
                 <label for="telephone">T&eacute;l&eacute;phone :</label>
                 <input type="tel" name="telephone" id="telephone" class="form-control" required>
             </div>
-            <button type="submit" class="btn btn-success">Confirmer la commande</button>
+            <input type="hidden" name="total" value="<?= $total ?>">
+            <button type="submit" class="btn btn-success">Payer avec Stripe</button>
         </form>
     </div>
     <?php require 'footer.php'; ?>

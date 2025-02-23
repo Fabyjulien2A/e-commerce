@@ -21,7 +21,6 @@ foreach ($_SESSION['panier'] as $id => $quantite) {
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -34,7 +33,8 @@ foreach ($_SESSION['panier'] as $id => $quantite) {
     <?php require 'header.php'; ?>
     <div class="container mt-5">
         <h2>Validation de votre commande</h2>
-        <p>Total &agrave; payer : <strong><?= number_format($total, 2) ?> &euro;</strong></p>
+        <p>Total à payer : <strong><?= number_format($total, 2) ?> €</strong></p>
+        
         <form method="post" action="paiement.php">
             <div class="mb-3">
                 <label for="nom">Nom complet :</label>
@@ -45,8 +45,12 @@ foreach ($_SESSION['panier'] as $id => $quantite) {
                 <textarea name="adresse" id="adresse" class="form-control" required></textarea>
             </div>
             <div class="mb-3">
-                <label for="telephone">T&eacute;l&eacute;phone :</label>
+                <label for="telephone">Téléphone :</label>
                 <input type="tel" name="telephone" id="telephone" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="email">E-mail :</label>
+                <input type="email" name="email" id="email" class="form-control" required>
             </div>
             <input type="hidden" name="total" value="<?= $total ?>">
             <button type="submit" class="btn btn-success">Payer avec Stripe</button>
